@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <button>Ana Sayfa</button>
+        <button>Yeni Entry</button>
+        <h1>En son yazdigim yazilar</h1>
+        <ul>
+            <!-- : ile bind ediyoruz. Bunun anlamı eğer parent objesinde herhangibir
+                değişiklik olursa o değişikliği otomatik almalarını sağlamak -->
+
+            <!-- Parenttan data aktarmak için slot veya prob kullanılır. -->
+            <liste-elemani
+                v-for="eleman in listeElemanlari"
+                :id = "eleman.id"
+                :key = "eleman.id"
+                :resim = "eleman.resim"
+                :baslik = "eleman.baslik"
+                :metin = "eleman.metin"
+                @remove-element = "removeFromList">
+                <a href="" slot="entryLink">Devamını Oku</a>
+                <a href="" slot="date">28.08.2018</a>
+            </liste-elemani>
+
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="app.js"></script>
+</html>
