@@ -9,8 +9,29 @@
 </head>
 <body>
     <div id="app">
-        <button>Ana Sayfa</button>
-        <button>Yeni Entry</button>
+        <button @click="selected = 'listView'">Ana Sayfa</button>
+        <button @click="selected = 'yeniEntry'">Yeni Entry</button>
+        <keep-alive>
+            <component :is="selected"></component>
+        </keep-alive>
+    </div>
+
+</body>
+<script type="text/x-template" id="yeniEntry">
+    <div style="margin-bottom: 20px">
+        <h1>Yeni Bir Entry</h1>
+        <div>
+            <label for="baslik">Baslik</label>
+            <input type="text" name="baslik" id="baslik">
+        </div>
+        <div>
+            <label for="metin">Metin</label>
+            <textarea name="metin" id="metin"></textarea>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="anasayfa">
+    <div>
         <h1>En son yazdigim yazilar</h1>
         <ul>
             <!-- : ile bind ediyoruz. Bunun anlamı eğer parent objesinde herhangibir
@@ -31,7 +52,7 @@
 
         </ul>
     </div>
-</body>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="app.js"></script>
 </html>

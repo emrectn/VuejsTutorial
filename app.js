@@ -51,32 +51,48 @@ Vue.component('listeElemani', {
 })
 
 new Vue({
-  el: '#app',
+	el: '#app',
   data: {
-    listeElemanlari: [
-      {
-        id: 1,
-        resim: 'https://placeimg.com/350/150/any/1',
-        baslik: 'Bu benim birinci basligim',
-        metin: 'Bu benim birinci metnim.Bu benim birinci metnim.Bu benim birinci metnim.'
-      },
-      {
-        id: 2,
-        resim: 'https://placeimg.com/350/150/any/2',
-        baslik: 'Bu benim ikinci basligim',
-        metin: 'Bu benim ikinci metnim.Bu benim ikinci metnim.Bu benim ikinci metnim.'
-      },
-      {
-        id: 3,
-        resim: 'https://placeimg.com/350/150/any/3',
-        baslik: 'Bu benim üçüncü basligim',
-        metin: 'Bu benim üçüncü metnim.Bu benim üçüncü metnim.Bu benim üçüncü metnim.'
-      },
-    ]
+  	selected: 'listView'
   },
-  methods: {
-    removeFromList (id) {
-      this.listeElemanlari = this.listeElemanlari.filter(eleman => eleman.id != id )
+  components: {
+  	'yeniEntry': {
+    	template: '#yeniEntry',
+      destroyed () {
+      	console.log('Yeni Entry Sayfasi destroy edildi.')
+      }
+    },
+  	'listView': {
+    	template: '#anasayfa',
+      data () {
+      	return {
+          listeElemanlari: [
+            {
+              id: 1,
+              resim: 'https://placeimg.com/350/150/any/1',
+              baslik: 'Bu benim birinci basligim',
+              metin: 'Bu da benim birinci yazdigim metin'
+            },
+            {
+              id: 2,
+              resim: 'https://placeimg.com/350/150/any/2',
+              baslik: 'Bu benim ikinci basligim',
+              metin: 'Bu da benim ikinci yazdigim metin'
+            },
+            {
+              id: 3,
+              resim: 'https://placeimg.com/350/150/any/3',
+              baslik: 'Bu benim ucuncu basligim',
+              metin: 'Bu da benim ucuncu yazdigim metin'
+            }
+          ]
+        }
+      },
+   		methods: {
+        removeFromList (id) {
+          this.listeElemanlari = this.listeElemanlari.filter(eleman => eleman.id !== id)
+        }
+      },
     }
   }
 })
