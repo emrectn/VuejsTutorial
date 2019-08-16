@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Required Stylesheets -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+    />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+  </head>
+
+  <body>
+    <!-- Our application root element -->
+    <div id="app">
+      <payment-form></payment-form>
+    </div>
+
+  </body>
+
+  <script type="text/x-template" id="paymentInformation">
+    <section>
+      <b-container fluid>
+        <b-row>
+          <b-col>
+            <h2>Payment Information</h2>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+              label="Card Type"
+              label-for="card-type"
+            >
+              <b-form-select id="card-type" name="card-type" v-model="cardType" :options="cardOptions" />
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+                label="Card Number"
+                label-for="card-no"
+            >
+              <b-form-input id="card-no" name="card-no" v-model.trim="cardNo" placeholder="Enter your card number"></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+                label="Expiry Date"
+                label-for="expiry-date"
+            >
+              <b-form-input id="expiry-date" name="expiry-date" v-model.trim="expiryDate" placeholder="mm/yyyy"></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+  </script>
+
+  <script type="text/x-template" id="paymentForm">
+    <form action="">
+      <div class="payment-form-header">
+        <h1>Payment Form</h1>
+      </div>
+      <b-container fluid>
+        <b-row>
+          <b-col cols="12" md="6">
+            <contact-information></contact-information>
+          </b-col>
+          <b-col cols="12" md="6">
+            <payment-information></payment-information>
+          </b-col>
+        </b-row>
+      </b-container>
+      <div class="payment-form-footer">
+        <b-button variant="primary">Validate Payment</b-button>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/x-template" id="contactInformation">
+    <section>
+      <b-container fluid>
+        <b-row>
+          <b-col>
+            <h2>Contact Information</h2>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group label="Title">
+              <b-form-radio-group id="title" v-model="title" :options="titleOptions" name="title">
+              </b-form-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+                label="Name"
+                label-for="name"
+            >
+              <b-form-input id="name" name="name" v-model.trim="name" placeholder="Enter your name"></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+                label="Email"
+                label-for="email"
+            >
+              <b-form-input id="email" name="email" v-model.trim="email" placeholder="Enter your email" type="email"></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+                label="Password"
+                label-for="password"
+            >
+              <b-form-input id="password" name="password" v-model.trim="password" placeholder="Enter your password" type="password"></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+  </script>
+
+
+
+  <script src="app.js"></script>
+
+</html>

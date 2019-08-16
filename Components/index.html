@@ -11,9 +11,14 @@
     <div id="app">
         <button @click="selected = 'listView'">Ana Sayfa</button>
         <button @click="selected = 'yeniEntry'">Yeni Entry</button>
-        <keep-alive>
-            <component :is="selected"></component>
-        </keep-alive>
+        <!-- Komponentler arasındaki geçise animasyon eklemek için transition tagı kullanılır. -->
+        <transition mode="out-in" name="component-fade">
+            <!-- Geçişlerdeki dataların kaybolmaması için keep-alive seçeneği kullanılır. -->
+            <keep-alive>
+                <component :is="selected"></component>
+            </keep-alive>
+        </transition>
+
     </div>
 
 </body>

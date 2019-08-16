@@ -1,0 +1,77 @@
+.goster-enter,
+.goster-leave-to {
+  opacity: 0;
+}
+
+.goster-enter-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.goster-leave-active {
+  transition: opacity 0.5s ease-in;
+}
+
+/* Animasyon HighFive */
+@keyframes highFive {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+
+/* Animasyon Saybye */
+@keyframes sayBye {
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(-10deg);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+}
+
+#demo {
+    text-align: center;
+}
+
+button {
+    margin-bottom: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.hand {
+    font-size: 50px;
+    display: inline-block;
+}
+
+/* Transition içiin  */
+.shake-enter-active {
+    /* animation: shake 0.5s both; Özel animasyonlarıda kullanabiliyoruz.*/
+    animation: highFive 0.5s both;
+}
+
+.shake-leave-active {
+    animation: sayBye 2s both;
+}
+
+/* Kaynakça
+https://daneden.github.io/animate.css/
+*/

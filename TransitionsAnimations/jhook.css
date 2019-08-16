@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:900');
+p {
+  font-family: 'Exo', sans-serif;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 30px;
+  letter-spacing: 0.1em;
+}
+
+#jhook {
+  text-align: center;
+}
