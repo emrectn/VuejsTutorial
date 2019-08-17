@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <ul>
+                <!-- bind:key elementi unique olmak zorunda -->
+                <li v-for="(v, i) in liste" :key="v">
+                    {{i}} {{v}} <input type="/text">
+                </li>
+            </ul>
+            <button v-on:click='rastgeleListe'>Rastgele Liste</button>
+        </div>
+        <!-- 
+            V-if: elementler koşula bağlı olarak Html'e eklenir veya çıkarılır
+            V-show: Koşula bağlı olarak Display:None olarak işaretlenir.
+        -->
+
+        <div class="space">
+            <input type="text" v-model='text'>
+            <div v-if='text.length > 0'>
+                Beni Göster
+            </div>
+            <div v-else>
+                Beni Gösterme !!
+            </div>
+        </div>
+        <hr>
+        <!-- 
+            V-model:
+            - Form elementleri için kullanılır ve iki yönlü data alışverişi mümkün. 
+            - Model(data içinde tanımlı kısım) View(Template gözüken kısım)
+            - Model veya View değişirse diğeride değişir.
+            - v-model.trim -- Gereksiz whitespaceleri siler.
+            - v-model.number -- Numbera çevrilir.
+            - v-model.lazy -- Farklı elemente geçicen değişiklik gerçekleşir.
+        -->
+
+        <div class="space">
+            <input type="text" v-model='tmp'>
+            <p>{{tmp}}</p>
+        </div>
+
+        <!-- Checkboxta seçilen kutunun value değeri listeye eklenir. -->
+        <div>
+            <input type="checkbox" value="Süt" v-model="alicaklarim">
+            <label>Süt</label>
+        </div>
+        <div>
+            <input type="checkbox" value="Yumurta" v-model="alicaklarim">
+            <label>Yumurta</label>
+            
+        </div>
+        <div>
+            <input type="checkbox" value="Şeker" v-model="alicaklarim">
+            <label>Şeker</label>
+        </div>
+
+        <!-- Liste gösterilir. -->
+        <div>
+            {{alicaklarim}}
+        </div>
+        <hr>
+        <!-- 
+            V-bind
+            Class ve inline style'ları dinamik olarak eklemek için kullanılır. : ile gösterilir.
+         -->
+        <div class="space">
+            <!-- isActive true ise activeClass değilse '' boşluk -->
+            <p :class="isActive ? activeClass : ''">Mavi Yazı</p>
+            <!-- Birden fazla class ekleme -->
+            <p :class="[isActive ? activeClass : '', 'is-bold']">Bold ve İtalic Yazı</p>
+            <!-- Fonksiyon ile karar verme -->
+            <p :class="classDecider">Fonksiyondan Yeşil ve bold</p>
+            <p :style="{fontSize: '25px'}">Vbind ile style</p>
+        </div>
+        <hr>
+        <!-- 
+            v-on
+            Eventleri elementlere bağlamak için kullanırız.
+                .stop    - event.stopPropagation()
+                .prevent -
+                .once    - Even 1 kere tetikleir.
+                .self    - Sadece belirtilen kısıma basılırsa tetiklenir.
+                other - https://vuejs.org/v2/api/#v-on
+         -->
+        <div class="space">
+            <button v-on:click="onClick">Sayac</button>
+            <p>{{sayac}}</p>
+        </div>
+        <hr>
+        <!-- 
+            Direktifler: v-html, v-text, v-once
+         -->
+        <div v-html="html" class="space">
+        </div>
+        <div>
+            <p>v-html kullanmadan. {{html}} </p>
+        </div>
+        <hr>
+        <!-- 
+            Reactivity (Tepkisellik)
+        -->
+        <div class="space">
+            <button @click="addNewPropertie">Yeni Özellik Ekle</button>
+            <div>{{divContainer.text2}}</div>
+        </div>
+        <hr>
+        <!-- 
+            Reactivity - 2
+         -->
+        <div class="space">
+            {{tmp}}
+            <br>
+            <button @click="changeText"> Texti Değiştir.</button>
+        </div>
+    </div>
+
+    <div style="margin: 50px 0px;">
+        <hr>
+        <span> ##### Hesap Makinesi Uygulması #####</span>
+        <hr>
+    </div>
+
+    <div id="hesapmakinesi">
+        <input type="number" v-model.number="num1"> 
+        <select v-model="secilenIslem" @change="onChange">
+            <option :value="islem" v-for="islem in islemler">{{islem}}</option>
+        </select>
+        <input type="number" v-model.number="num2">
+        <span> = </span>
+        <span>{{sonuc || (num1 + num2)}}</span>
+    </div>
+
+    <hr>
+    <div id="bahsisci">
+        <h3>Bahsis Programı</h3>
+        <div>
+            <span>Hesap : </span>
+            <input type="number" v-model.number="hesap" @input="bahsisHesapla">
+        </div>
+        <div>
+            <span>Bahsis Yüzdesi</span>
+            <select v-model.number="secilen" @change="bahsisHesapla">
+                <option :value="yuzde" v-for="yuzde in hesapyuzdesi"> {{yuzde}}%</option>
+            </select>
+        </div>
+        <span>Bahsis : {{sonuc || 0}}</span>
+    </div>
+
+    <div style="margin: 100px 0px"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="app.js"></script>
+</body>
+</html>

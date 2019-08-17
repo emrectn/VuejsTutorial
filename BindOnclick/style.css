@@ -1,0 +1,22 @@
+input[type=number] {
+    width: 40px;
+    height: 20px;
+}
+
+.is-active {
+    color: blue;
+}
+
+.is-bold {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.space {
+    margin-top: 10px;
+}
+
+.green-color {
+    color: green;
+}
+

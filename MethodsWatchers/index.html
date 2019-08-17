@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <div id="app">
+        <div>
+        <label for="filter">Sonuclari Filtrele</label>
+        <input type="text" id="filter" v-model="filterTerm"/>
+        </div>
+        <div>
+        <button @click='puanaGoreSirala'>Puana Gore Sirala</button>
+        <button @click='galibiyeteGoreSirala'>Galibiyete Gore Sirala</button>
+        <button @click='beraberligeGoreSirala'>Beraberlige Gore Sirala</button>    
+        <button @click='yenilgiyeGoreSirala'>Yenilgiye Gore Sirala</button>        
+        </div>
+        <table>
+        <thead>
+            <tr>
+            <th v-for='column in columns'>
+                {{ column }}
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for='eleman in filtrelenmisSonuclar'>
+            <td>
+                {{ eleman.takim }}
+            </td>
+            <td>
+                {{ eleman.p }}
+            </td>      
+            <td>
+                {{ eleman.g }}
+            </td>            
+            <td>
+                {{ eleman.b }}
+            </td>        
+            <td>
+                {{ eleman.m }}
+            </td>              
+            </tr>
+        </tbody>
+        </table>
+        <div id="takimFormasi" v-if="takimFormasiURL">
+        <img :src="takimFormasiURL" alt="">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="app.js"></script>
+</body>
+</html>
